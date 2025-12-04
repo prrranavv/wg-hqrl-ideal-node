@@ -108,14 +108,9 @@ export function ResourceCard({ resource, compact, className }: ResourceCardProps
         </div>
         
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-4">
-            <h4 className="font-semibold text-[15px] text-gray-900">
-              {resource.label}
-            </h4>
-            <span className="text-[10px] font-medium text-gray-400 bg-gray-100 px-2 py-1 rounded flex-shrink-0">
-              MCQ
-            </span>
-          </div>
+          <h4 className="font-semibold text-[15px] text-gray-900">
+            {resource.label}
+          </h4>
           
           {/* Trust Markers */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5">
