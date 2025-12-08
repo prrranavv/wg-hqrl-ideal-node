@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Resource, ResourceType } from "@/lib/curriculum-data";
-import { Check, Star, Flag, Trophy } from "lucide-react";
+import { Check, Star, Flag, Trophy, Lightbulb } from "lucide-react";
 
 const typeConfig: Record<ResourceType, { 
   icon: React.ComponentType<{ className?: string }>;
@@ -31,6 +31,13 @@ const typeConfig: Record<ResourceType, {
     iconColor: "text-white",
     bgColor: "bg-white",
     borderColor: "border-emerald-200 hover:border-emerald-400",
+  },
+  hot: {
+    icon: Lightbulb,
+    iconBg: "bg-purple-500",
+    iconColor: "text-white",
+    bgColor: "bg-white",
+    borderColor: "border-purple-200 hover:border-purple-400",
   },
 };
 

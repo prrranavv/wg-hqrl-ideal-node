@@ -28,6 +28,7 @@ export function ContentArea({ module }: ContentAreaProps) {
   const warmupResource = unitResources.find(r => r.type === "warmup");
   const formativeResource = unitResources.find(r => r.type === "formative");
   const staartestResource = unitResources.find(r => r.type === "statetest");
+  const hotResource = unitResources.find(r => r.type === "hot");
 
   return (
     <main className="flex-1 h-full overflow-y-auto bg-gray-100/50">
@@ -76,12 +77,13 @@ export function ContentArea({ module }: ContentAreaProps) {
         </div>
 
         {/* 3. Module Review */}
-        {(formativeResource || staartestResource) && (
+        {(formativeResource || staartestResource || hotResource) && (
           <section className="bg-white rounded-2xl border border-gray-200 p-6 mb-8 shadow-sm">
             <h3 className="font-bold text-lg text-gray-900 mb-4">Module Review</h3>
             <div className="space-y-4">
               {formativeResource && <ResourceCard resource={formativeResource} />}
               {staartestResource && <ResourceCard resource={staartestResource} />}
+              {hotResource && <ResourceCard resource={hotResource} />}
             </div>
           </section>
         )}
@@ -114,6 +116,7 @@ function TopicSection({ topic, moduleNumber, isExpanded, onToggle }: TopicSectio
   const topicResources = generateResources("topic", topic.title);
   const warmupResource = topicResources.find(r => r.type === "warmup");
   const formativeResource = topicResources.find(r => r.type === "formative");
+  const hotResource = topicResources.find(r => r.type === "hot");
   const hasLinkedResources = topicHasLinkedResources(topic);
 
   return (
@@ -173,9 +176,10 @@ function TopicSection({ topic, moduleNumber, isExpanded, onToggle }: TopicSectio
           </div>
 
           {/* Topic Review */}
-          {formativeResource && (
-            <div className="px-6 py-5 bg-blue-50/30 border-t border-gray-100">
-              <ResourceCard resource={formativeResource} />
+          {(formativeResource || hotResource) && (
+            <div className="px-6 py-5 bg-blue-50/30 border-t border-gray-100 space-y-4">
+              {formativeResource && <ResourceCard resource={formativeResource} />}
+              {hotResource && <ResourceCard resource={hotResource} />}
             </div>
           )}
         </div>
@@ -197,6 +201,7 @@ function LessonItem({ lesson, moduleNumber, topicNumber, isExpanded, onToggle }:
   const lessonResources = generateResources("lesson", lesson.title);
   const warmupResource = lessonResources.find(r => r.type === "warmup");
   const formativeResource = lessonResources.find(r => r.type === "formative");
+  const hotResource = lessonResources.find(r => r.type === "hot");
 
   return (
     <div className={cn(
@@ -243,6 +248,7 @@ function LessonItem({ lesson, moduleNumber, topicNumber, isExpanded, onToggle }:
         <div className="px-4 pb-4 space-y-3">
           {warmupResource && <ResourceCard resource={warmupResource} compact />}
           {formativeResource && <ResourceCard resource={formativeResource} compact />}
+          {hotResource && <ResourceCard resource={hotResource} compact />}
         </div>
       )}
     </div>

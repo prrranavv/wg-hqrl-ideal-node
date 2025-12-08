@@ -239,7 +239,7 @@ export const bluebonnetGrade6: Curriculum = {
   ],
 };
 
-export type ResourceType = "warmup" | "formative" | "statetest";
+export type ResourceType = "warmup" | "formative" | "statetest" | "hot";
 export type ResourceLevel = "unit" | "topic" | "lesson";
 
 export interface TrustMarker {
@@ -264,15 +264,20 @@ export const waygroundLinks: Record<string, string> = {
   // Unit level
   "statetest-unit-Moving Beyond Positive Quantities": "https://wayground.com/admin/quiz/692fe2d8dd9f8343f447d2ef",
   "formative-unit-Moving Beyond Positive Quantities": "https://wayground.com/admin/quiz/693011901fbd94c1004464bb",
+  "hot-unit-Moving Beyond Positive Quantities": "https://wayground.com/admin/quiz/69302b3c83579f0e7a57eab3",
   // Topic level - Warm-ups
   "warmup-topic-Operating with Integers": "https://wayground.com/admin/quiz/6931682592cd40ce00f60c8b",
   // Topic level - Formatives
   "formative-topic-Operating with Integers": "https://wayground.com/admin/quiz/692fe8f6caf2e0a0e4dbeb80",
+  // Topic level - Higher Order Thinking
+  "hot-topic-Operating with Integers": "https://wayground.com/admin/quiz/69302a945d90ba8e8c9c7953",
   // Lesson level - Warm-ups
   "warmup-lesson-Absolute Value": "https://wayground.com/admin/quiz/69316792e2c2f2350b628b4e",
   "warmup-lesson-Subtracting Integers": "https://wayground.com/admin/quiz/6931628e5d33fd3ef990d023",
   // Lesson level - Formatives
   "formative-lesson-Rational Number System": "https://wayground.com/admin/quiz/692fe60c55d19008e046a47b",
+  // Lesson level - Higher Order Thinking
+  "hot-lesson-Rational Number System": "https://wayground.com/admin/quiz/6930296553784969fab24eee",
 };
 
 // Resource configurations by level and type
@@ -302,6 +307,14 @@ const resourceConfig: Record<ResourceLevel, Record<ResourceType, { label: string
         { icon: "star", text: "STAAR 2.0 aligned question types" },
       ],
     },
+    hot: {
+      label: "Higher Order Thinking (Discussion-based)",
+      trustMarkers: [
+        { icon: "lightbulb", text: "Promotes critical thinking" },
+        { icon: "users", text: "Discussion-based activity" },
+        { icon: "brain", text: "Develops deeper understanding" },
+      ],
+    },
   },
   topic: {
     warmup: {
@@ -328,6 +341,14 @@ const resourceConfig: Record<ResourceLevel, Record<ResourceType, { label: string
         { icon: "graduation", text: "Test readiness" },
       ],
     },
+    hot: {
+      label: "Higher Order Thinking (Discussion-based)",
+      trustMarkers: [
+        { icon: "lightbulb", text: "Promotes critical thinking" },
+        { icon: "users", text: "Discussion-based activity" },
+        { icon: "brain", text: "Develops deeper understanding" },
+      ],
+    },
   },
   lesson: {
     warmup: {
@@ -352,6 +373,14 @@ const resourceConfig: Record<ResourceLevel, Record<ResourceType, { label: string
         { icon: "medal", text: "15-20 mins" },
         { icon: "star", text: "STAAR-aligned" },
         { icon: "graduation", text: "Test readiness" },
+      ],
+    },
+    hot: {
+      label: "Higher Order Thinking (Discussion-based)",
+      trustMarkers: [
+        { icon: "lightbulb", text: "Promotes critical thinking" },
+        { icon: "users", text: "Discussion-based activity" },
+        { icon: "brain", text: "Develops deeper understanding" },
       ],
     },
   },
@@ -422,6 +451,20 @@ export function generateResources(level: ResourceLevel, itemTitle: string): Reso
       waygroundLink: waygroundLinks[statetestId],
     });
   }
+  
+  // Higher Order Thinking (Discussion-based) - after
+  const hotId = `hot-${level}-${itemTitle}`;
+  resources.push({
+    id: hotId,
+    type: "hot",
+    level,
+    label: config.hot.label,
+    description: "Discussion-based activity to develop critical thinking",
+    questionCount: 5,
+    timing: "after",
+    trustMarkers: config.hot.trustMarkers,
+    waygroundLink: waygroundLinks[hotId],
+  });
   
   return resources;
 }

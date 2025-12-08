@@ -34,3 +34,5 @@ export function CurriculumLogo({ size = "md", className }: CurriculumLogoProps) 
   );
 }
 
+
+
